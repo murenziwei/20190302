@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>我的信息模板</title>
+    <style type="text/css">
+        body{
+            margin:0;
+        }
+    	.header-nav{
+            position:relative;
+            text-align:center;
+            padding:0.5rem 0;
+        }
+        .left-icon{
+            width:1.5rem;
+            height:1.5rem;
+            position:absolute;
+            left:0;
+        }
+        .hn-title{
+            font-size:1.3rem;
+            font-weight:700;
+        }
+        .header-body{
+            background-color:rgb(253,212,23);
+
+        }
+        .hb-content{
+            display:flex;
+            padding:1rem;
+        }
+
+        .hcl-img{
+            width:3rem;
+            height:3rem;
+            border-radius:50%;
+        }
+        .hb-c-right{
+            flex:1;
+            padding:0 0.5rem;
+        }
+        .hcr-top{
+            height:3rem;
+            display:flex;
+            flex-direction:column;
+            justify-content:space-between;
+            opacity:0.8;
+        }
+        .hcr-t-left,.hcr-t-right{
+            display:flex;
+            align-items:center;
+
+        }
+        .hi-left{
+            width:50%;
+            font-size:0.8rem;
+        }
+        .hi-right{
+            width:50%;
+            font-size:0.7rem;
+            justify-content: flex-end;
+        }
+        .htr-i-img,.htl-i-img{
+            width:0.8rem;
+            padding:0 0.2rem;
+        }
+        .hcr-b-top{
+            border-radius:10px;
+            background-color:rgb(253,167,18);
+            display:inline-flex;
+            padding:2px 5px;
+            align-items:center;
+            margin:0.5rem 0;
+        }
+        .text-center{
+            display:flex;
+            align-items:center;
+        }
+        .hcr-b-bottom{
+            display:flex;
+            align-items:center;
+            font-size:0.7rem;
+        }
+        .hbt-img{
+            width:0.8rem;
+            height:0.8rem;
+            padding:0 0.1rem;
+        }
+        .hbt-text{
+            font-size:0.8rem;
+            color:#fff;
+        }
+        .main-search{
+            display:flex;
+            align-items:center;
+            padding:1rem 0.5rem;
+        }
+
+        .ms-border{
+            flex:1;
+            display:flex;
+            align-items:center;
+            margin-right:1rem;
+            position:relative;
+
+        }
+        .ms-border>[name='phone']{
+            border:none;
+            outline:none;
+            height:2rem;
+            width:100%;
+            padding-left:2.5rem;
+            padding-right:0.5rem;
+            border-radius:50px;
+            transition:all 0.4s;
+            box-shadow:0 0 10px rgba(0,0,0,0.1);
+            opacity:0.7;
+        }
+        .ms-border>[name='phone']:focus{
+            box-shadow:0 0 1px blue;
+        }
+        .ms-btn{
+            color:rgb(86,86,86);
+            font-size:1rem;
+        }
+        .mb-img{
+            display:flex;
+            align-items:center;
+            justify-content: center;
+            position:absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            z-index:2;
+            width:2.5rem;
+        }
+        .mb-img>img{
+            width:1rem;
+            height:1rem;
+            padding-left:0.5rem;
+        }
+        .m-b-tabs{
+            text-align:center;
+
+        }
+        .mbt-frame{
+            display:inline-flex;
+        }
+        .mf-item{
+            padding:0.3rem 0.5rem;
+            font-size:0.8rem;
+            border:1px solid rgba(0,0,0,0.2);
+
+            border-right-color:transparent;
+            cursor:pointer;
+        }
+        .mf-item:first-child{
+            border-top-left-radius:20px;
+            border-bottom-left-radius:20px;
+        }
+
+        .mf-item:last-child{
+            border-top-right-radius:20px;
+            border-bottom-right-radius:20px;
+            border-right-color:rgba(0,0,0,0.1);
+        }
+        .mf-item.active{
+            color:#fff;
+            background-color:orange;
+            border-color:orange;
+        }
+        .mbc-item{
+            padding:1rem 0;
+            border-bottom:1px solid rgba(0,0,0,0.1);
+        }
+        .mi-tag{
+            display:flex;
+
+        }
+        .mi-t-left{
+            padding-left:10px;
+        }
+        .mtl-img{
+            width:2.5rem;
+            height:2.5rem;
+            border-radius:5px;
+            box-shadow:0 0 1px rgba(0,0,0,0.4);
+        }
+        .mi-t-right{
+            flex:1;
+            padding:0 10px;
+        }
+        .mtr-name{
+            font-size:1rem;
+            font-weight:600;
+            margin:0;
+        }
+        .mtr-footer,.mtr-center{
+            display:flex;
+            align-items:center;
+            justify-content:space-between;
+        }
+        .mc-phone{
+            color:#999;
+            font-size:0.8rem;
+            padding:5px 0;
+        }
+        .mf-right,.mc-right{
+            font-size:0.7rem;
+            opacity:0.7;
+        }
+        .mf-text{
+            background-color:yellow;
+            color:#fff;
+            font-size:0.7rem;
+            border-radius:2px;
+            padding:1px;
+        }
+    </style>
+    <script src="./jquery-3.3.1.min.js"></script>
+  </head>
+  <body>
+    <div id="app">
+    	<div class="header-nav">
+            <img src="./icon/left-cut.png" class="left-icon" onclick="window.history.back()"> 
+            <span class="hn-title">行会大宁</span>
+        </div>
+        <div class="header-body">
+            <div class="hb-content">
+                <div class="hb-c-left">
+                    <img src="./icon/fang.png" class="hcl-img">
+
+                </div>
+                <div class="hb-c-right">
+                    <div class="hcr-top">     
+                        <div class="hcr-t-left">
+                            <div class="htl-item hi-left">李伟</div>
+                            <div class="htl-item hi-right text-center">
+                                <img src="./icon/my-dedication.png" class="htl-i-img">
+                                <div>
+                                        
+                                    我的奉献：
+                                    <span class="num-text">342</span>
+                                    人
+                                </div>
+                            </div>
+                        </div>
+                        <div class="hcr-t-right">
+                            <div class="htr-item hi-left">
+                                13825000114
+                            </div>
+                            <div class="htr-item hi-right text-center">
+                                <img src="./icon/guild-information.png" class="htr-i-img">
+                                <div>
+                                        
+                                    行会信息：
+                                    <span class="num-text">623</span>
+                                    人
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="hcr-bottom">
+                        <div class="hcr-b-top">
+                            <img src="./icon/grade.png" class="hbt-img">
+                            <span class="hbt-text">第一关声明不显</span>
+                        </div>
+                        <div class="hcr-b-bottom">
+                            第一关声名不显及以示人数：
+                            <span class="num-text">214</span>
+                            人
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div class="main">
+            <div class="main-search">
+                <div class="ms-border">
+                    <div class="mb-img">
+                        
+                        <img src="./icon/search.png">
+                    </div>
+                    <input type="type" name="phone" id="phone-input" placeholder="请输入昵称或手机号">
+                </div>
+                <span class="ms-btn" onclick="searchFn()">搜索</span>
+            </div>
+            <div class="main-body">
+                <div class="m-b-tabs">
+                    <div class="mbt-frame">
+                        <div class="mf-item active" onclick="tabs(this)">按等级</div>
+                        <div class="mf-item" onclick="tabs(this)">按时间</div>
+                    </div>
+                </div>
+                <div class="m-b-content">
+                    <div class="mbc-item">
+                        <div class="mi-tag">
+                            <div class="mi-t-left">
+                                <img src="./icon/fang.png" class="mtl-img">
+                            </div>
+                            <div class="mi-t-right">
+                                <p class="mtr-name">李伟</p>
+                                <div class="mtr-center">
+                                    <div class="mc-phone">13825000114</div>
+                                    <div class="mc-right">
+                                        他的奉献：
+                                        <span class="mr-text">2</span>
+                                    </div>
+                                </div>
+                                <div class="mtr-footer">
+                                    <div class="mf-text">
+                                        第一关迎祥纳福
+                                    </div>
+                                    <div class="mf-right">
+                                        加入时间：
+                                        <span class="mf-r-time">
+                                            2019.03.02 21:21:21
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mbc-item">
+                        <div class="mi-tag">
+                            <div class="mi-t-left">
+                                <img src="./icon/fang.png" class="mtl-img">
+                            </div>
+                            <div class="mi-t-right">
+                                <p class="mtr-name">李伟</p>
+                                <div class="mtr-center">
+                                    <div class="mc-phone">13825000114</div>
+                                    <div class="mc-right">
+                                        他的奉献：
+                                        <span class="mr-text">2</span>
+                                    </div>
+                                </div>
+                                <div class="mtr-footer">
+                                    <div class="mf-text">
+                                        第一关迎祥纳福
+                                    </div>
+                                    <div class="mf-right">
+                                        加入时间：
+                                        <span class="mf-r-time">
+                                            2019.03.02 21:21:21
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mbc-item">
+                        <div class="mi-tag">
+                            <div class="mi-t-left">
+                                <img src="./icon/fang.png" class="mtl-img">
+                            </div>
+                            <div class="mi-t-right">
+                                <p class="mtr-name">李伟</p>
+                                <div class="mtr-center">
+                                    <div class="mc-phone">13825000114</div>
+                                    <div class="mc-right">
+                                        他的奉献：
+                                        <span class="mr-text">2</span>
+                                    </div>
+                                </div>
+                                <div class="mtr-footer">
+                                    <div class="mf-text">
+                                        第一关迎祥纳福
+                                    </div>
+                                    <div class="mf-right">
+                                        加入时间：
+                                        <span class="mf-r-time">
+                                            2019.03.02 21:21:21
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        //对接用户信息的接口，改变class为hb-content元素内容
+        function userFn(){
+
+            console.log("请求用户数据");
+            $.ajax({url:"",data:"",type:"",success:function(){
+
+            }})
+        }
+        //搜索框的请求方法
+        function searchFn(){
+            //搜索框的值
+            var dataC=$("#phone-input").val();
+            //处理搜索框返回的数据
+            console.log("搜索框请求数据");
+            $.ajax({url:"",data:"",type:"",success:function(){
+
+            }})
+        }
+        //tabs切换,内容改变的接口
+        function tabs(tag){
+            console.log(tag);
+            //改变tab状态
+            $(tag).addClass("active").siblings().removeClass("active").add(function(){
+                /*
+                对接接口，改变class为m-b-content元素内容
+                 */
+                console.log("tab事件触发请求方法");
+                $.ajax({url:"",data:"",type:"",success:function(){
+
+                }})
+            });
+        }
+        window.onload=function(){
+            
+            userFn();
+        }
+    </script>
+  </body>
+</html>
